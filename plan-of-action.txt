@@ -1,0 +1,19 @@
+    Terminal Tic Tac Toe
+    
+
+    Each new game will be an instance of the Game class. Game class will keep track of player names and current board.
+
+    Each board will be an instance of the Board class. It will keep track of board state and contain the methods that check for a win.
+    
+    Mark class will take coordinates (A2) and mark type (X or O) on instance creation.
+
+
+    At the start of the game, the program will ask for Player 1's name and store it in a variable. Same for Player 2.
+    It will then create an instance of the Game class, passing in the player names as parameters.
+    The Game class' #initialize method will create a new Board instance, and store it as @board.
+    The program will randomize who gets Xs and Os, and prompt X-player to make their first move.
+
+    The player will input a coordinate, A1 - C3. An instance of the Mark class will be created and inserted into the Board instance's array.
+
+    If that player has made at least 3 moves, the Board instance will check for a 3-in-a-row. It will return 'X', 'O', or false.
+    The game will continue or display a message similar to "Xs wins! Make a choice: 1. Play another round. 2. Change names.
