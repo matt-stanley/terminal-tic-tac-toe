@@ -1,3 +1,4 @@
+## Board class intializes a fresh board each game. It also keeps track of marks made and checks for a win condition.
 class Board
   attr_reader :state
 
@@ -16,6 +17,10 @@ class Board
   def add_mark(coord, mark)
     @state[coord] = mark
   end
+
+  def draw
+    @state.each_with_index do |key, value, index|
+      
 
   # A winning line has to pass through (0-index) position 1, 3, 4, 5, or 7.
   # To check for win condition, we check 1 and 7 for a horizontal win, 3 and 5 for a vertical win,

@@ -17,3 +17,11 @@
 
     If that player has made at least 3 moves, the Board instance will check for a 3-in-a-row. It will return 'X', 'O', or false.
     The game will continue or display a message similar to "Xs wins! Make a choice: 1. Play another round. 2. Change names.
+
+    To draw the board, the program will iterate through the board[state] hash.
+      For indices 0, 3, and 6, it will puts the value at that index
+      These indices should be targetable by (if index % 3 == 0).
+      For indices 1, 4, and 7, it will print '|*|', where * is the value at that index.
+      These indices should be targetable by (if index % 3 == 1).
+      For indices 2, 5, and 8, it will print the value at that index, followed by puts _____ (five   underscores).
+      These indices should behave like: index % 3 == 2.
