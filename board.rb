@@ -1,6 +1,7 @@
 ## Board class intializes a fresh board each game. It also keeps track of marks made and checks for a win condition.
 class Board
   attr_reader :state
+  attr_reader :move_made
 
   # Set the initial state to a grid of a1 - c3, all set to empty strings
   def initialize
@@ -11,16 +12,26 @@ class Board
         @state["#{a}#{i}"] = ' '
       end
     end
+
+    @move_made = false
   end
 
   # When a player chooses a square, #add_mark is called to update the board state with X or O in its proper position.
-  def add_mark(coord, mark)
-    @state[coord] = mark
+  def make_move(coord, mark)
+    if @state[coord]
+      @state[coord] = mark
+      @move_made = true
+    else
+      system('clear')
+      puts "\n Uhhhhh... no."
+      gets
+    end
   end
 
   def draw
-    current_row = 1
-    puts "\n\ta b c \n"
+    rows = ['a', 'b', 'c']
+    current_row = 0
+    puts "\n\t1 2 3 \n"
     puts "\n"
     @state.each_with_index do |(key, value), index|
       if index % 3 == 0
@@ -30,8 +41,8 @@ class Board
         print "|#{value}|"
       elsif index % 3 == 2
         print value
-        puts "  #{current_row}"
-          current_row += 1
+        puts "  #{rows[current_row]}"
+        current_row += 1
         if index != 8
           puts "\t-----"
         end

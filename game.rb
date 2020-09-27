@@ -1,24 +1,28 @@
 ## This class will keep track of player names, whose turn it is, randomly assign a side.
-class GAME
+class Game
+  attr_reader :x_player
+  attr_reader :o_player
+
   def initialize(names)
     @players = {
-      names[0] => {},
-      names[1] => {}
+      names[0] => '',
+      names[1] => ''
     }
-
-    set_sides
 
     @x_turn = true
   end
 
-  def self.set_sides
-    if rand(2).zero?
-      @players.keys[0] = 'X'
-      @players.keys[1] = 'O'
+  def set_sides
+    if rand(2) == 0
+      @players[@players.keys[0]] = 'X'
+      @players[@players.keys[1]] = 'O'
     else
-      @players.keys[0] = 'O'
-      @players.keys[1] = 'X'
+      @players[@players.keys[0]] = 'O'
+      @players[@players.keys[1]] = 'X'
     end
+
+    @x_player = player_with('X')
+    @o_player = player_with('O')
   end
 
   def pass_turn
@@ -26,7 +30,7 @@ class GAME
   end
 
   def x_turn?
-    x_turn
+    @x_turn
   end
 
   def player(index)
