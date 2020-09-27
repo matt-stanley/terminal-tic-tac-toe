@@ -8,7 +8,7 @@ class Board
 
     ('a'..'c').each do |a|
       (1..3).each do |i|
-        @state["#{a}#{i}"] = ''
+        @state["#{a}#{i}"] = ' '
       end
     end
   end
@@ -19,15 +19,33 @@ class Board
   end
 
   def draw
-    @state.each_with_index do |key, value, index|
-      
+    current_row = 1
+    puts "\n\ta b c \n"
+    puts "\n"
+    @state.each_with_index do |(key, value), index|
+      if index % 3 == 0
+        print "\t"
+        print value
+      elsif index % 3 == 1
+        print "|#{value}|"
+      elsif index % 3 == 2
+        print value
+        puts "  #{current_row}"
+          current_row += 1
+        if index != 8
+          puts "\t-----"
+        end
+      end
+    end
+    puts "\n\n"
+  end
 
   # A winning line has to pass through (0-index) position 1, 3, 4, 5, or 7.
   # To check for win condition, we check 1 and 7 for a horizontal win, 3 and 5 for a vertical win,
   #   and the center, position 4, for vertical, horizontal, diagonal-right, and diagonal-left wins.
   def won?
     [1, 3, 5, 7, 4].each do |pos|
-      if @state.values[pos] != ''
+      if @state.values[pos] != ' '
         if [1, 7].include?(pos)
           if @state.values[pos] == @state.values[pos - 1] && @state.values[pos] == @state.values[pos + 1]
             return @state.values[pos]
@@ -50,5 +68,3 @@ class Board
     false
   end
 end
-
-board = Board.new
